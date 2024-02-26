@@ -23,7 +23,6 @@ export default {
       name: 'images',
       title: 'Images',
       type: 'array',
-      length: 4,
       required: true,
       of: [
         {
@@ -33,6 +32,13 @@ export default {
           },
         },
       ],
+      validation: (Rule:any) =>
+      Rule.custom((images:any) => {
+        if (!images || images.length !== 4) {
+          return 'You must provide exactly 4 images.';
+        }
+        return true;
+      }),
     },
     {
       name: 'category',
