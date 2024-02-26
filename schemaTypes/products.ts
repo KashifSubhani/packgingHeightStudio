@@ -38,7 +38,7 @@ export default {
           return 'You must provide exactly 4 images.';
         }
         return true;
-      }),
+      }).max(4),
     },
     {
       name: 'category',
