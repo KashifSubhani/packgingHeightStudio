@@ -10,46 +10,150 @@ export default {
       required: true,
     },
     {
-      name: 'url',
+      name: 'metaTitle',
       type: 'string',
-      title: 'Url',
+      title: 'Meta Title',
       required: true,
+    },
+    {
+      name: 'metaDescription',
+      title: 'Meta Description',
+      type: 'text',
+    },
+    {
+      name: 'metaTags',
+      title: 'Meta Tags',
+      type: 'text',
+      description: "Please seprate tag with ','",
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name', // Specify the field to use for generating the slug
+        maxLength: 200, // Maximum length of the generated slug
+      },
     },
     {
       name: 'description',
-      type: 'array',
       title: 'Description',
-      of: [{type: 'block'}],
+      type: 'text',
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
+      name: 'imageWithAlt',
+      type: 'object',
+      title: 'Feature Image',
       required: true,
-      options: {
-        hotspot: true, // Allows the user to set a hotspot for cropping
-      },
+      fields: [
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          required: true,
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'alt',
+          type: 'string',
+          required: true,
+          title: 'Alt',
+          description: 'Alternative text for the image',
+        },
+      ],
     },
     {
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
+      name: 'iconWithAlt',
+      type: 'object',
+      title: 'Feature Icon',
       required: true,
-      options: {
-        hotspot: true, // Allows the user to set a hotspot for cropping
-      },
+      fields: [
+        {
+          name: 'icon',
+          type: 'image',
+          title: 'Icon',
+          required: true,
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'alt',
+          type: 'string',
+          required: true,
+          title: 'Alt',
+          description: 'Alternative text for the image',
+        },
+      ],
     },
-    // {
-    //   title: 'Products',
-    //   name: 'products',
-    //   type: 'array',
-    //   unique: true,
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{type: 'product'}],
-    //     },
-    //   ],
-    // },
+    {
+      title: 'Faqs',
+      name: 'faqs',
+      type: 'array',
+      unique: true,
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'faqs'}],
+        },
+      ],
+    },
+
+    {
+      name: 'content',
+      type: 'object',
+      title: 'Content Section',
+      required: true,
+      fields: [
+        {
+          name: 'contentImage',
+          type: 'object',
+          title: 'Content Image',
+          required: true,
+          fields: [
+            {
+              name: 'image',
+              type: 'image',
+              title: 'Image',
+              required: true,
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              name: 'alt',
+              type: 'string',
+              required: true,
+              title: 'Alt',
+              description: 'Alternative text for the image',
+            },
+          ],
+        },
+        {
+          title: 'Content Details',
+          name: 'contentDetails',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'contentHeading',
+                  type: 'string',
+                  title: 'Content Heading',
+                },
+                {
+                  name: 'contentDescription',
+                  type: 'text',
+                  title: 'Content Description',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 }
