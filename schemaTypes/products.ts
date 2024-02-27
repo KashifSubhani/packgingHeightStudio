@@ -7,18 +7,46 @@ export default {
       name: 'name',
       type: 'string',
       title: 'Name',
+      required: true,
     },
     {
-      name: 'url',
+      name: 'metaTitle',
       type: 'string',
-      title: 'Url',
+      title: 'Meta Title',
+      required: true,
     },
     {
-      name: 'description',
+      name: 'metaDescription',
+      title: 'Meta Description',
+      type: 'text',
+    },
+    {
+      name: 'metaTags',
+      title: 'Meta Tags',
+      type: 'text',
+      description: "Please seprate tag with ','",
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name', // Specify the field to use for generating the slug
+        maxLength: 200, // Maximum length of the generated slug
+      },
+    },
+    {
+      name: 'shortDescription',
+      title: 'Short Description',
+      type: 'text',
+    },
+    {
+      name: 'details',
+      title: 'Details',
       type: 'array',
-      title: 'Description',
       of: [{type: 'block'}],
     },
+
     {
       name: 'images',
       title: 'Images',
@@ -26,25 +54,112 @@ export default {
       required: true,
       of: [
         {
-          type: 'image',
-          options: {
-            hotspot: true, // Enable if you want to allow hotspot information for images
-          },
+          name: 'imageWithAlt',
+          type: 'object',
+          title: 'Images',
+          required: true,
+          fields: [
+            {
+              name: 'image',
+              type: 'image',
+              title: 'Image',
+              required: true,
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              name: 'alt',
+              type: 'string',
+              required: true,
+              title: 'Alt',
+              description: 'Alternative text for the image',
+            },
+          ],
         },
       ],
-      validation: (Rule:any) =>
-      Rule.custom((images:any) => {
-        if (!images || images.length !== 4) {
-          return 'You must provide exactly 4 images.';
-        }
-        return true;
-      }).max(4),
+      validation: (Rule: any) =>
+        Rule.custom((images: any) => {
+          if (!images || images.length !== 4) {
+            return 'You must provide exactly 4 images.'
+          }
+          return true
+        }).max(4),
     },
+
     {
       name: 'category',
       title: 'Category',
       type: 'reference',
       to: [{type: 'category'}],
+    },
+
+    {
+      title: 'Faqs',
+      name: 'faqs',
+      type: 'array',
+      unique: true,
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'faqs'}],
+        },
+      ],
+    },
+
+    {
+      name: 'content',
+      type: 'object',
+      title: 'Content Section',
+      required: true,
+      fields: [
+        {
+          name: 'contentImage',
+          type: 'object',
+          title: 'Content Image',
+          required: true,
+          fields: [
+            {
+              name: 'image',
+              type: 'image',
+              title: 'Image',
+              required: true,
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              name: 'alt',
+              type: 'string',
+              required: true,
+              title: 'Alt',
+              description: 'Alternative text for the image',
+            },
+          ],
+        },
+        {
+          title: 'Content Details',
+          name: 'contentDetails',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'contentHeading',
+                  type: 'string',
+                  title: 'Content Heading',
+                },
+                {
+                  name: 'contentDescription',
+                  type: 'text',
+                  title: 'Content Description',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
   ],
 }
