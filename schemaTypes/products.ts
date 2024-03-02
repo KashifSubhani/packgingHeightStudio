@@ -141,23 +141,7 @@ export default {
           title: 'Content Details',
           name: 'contentDetails',
           type: 'array',
-          of: [
-            {
-              type: 'object',
-              fields: [
-                {
-                  name: 'contentHeading',
-                  type: 'string',
-                  title: 'Content Heading',
-                },
-                {
-                  name: 'contentDescription',
-                  type: 'text',
-                  title: 'Content Description',
-                },
-              ],
-            },
-          ],
+          of: [{type: 'block'}],
         },
       ],
     },
