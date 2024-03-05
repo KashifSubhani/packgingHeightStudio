@@ -41,6 +41,11 @@ export default {
       type: 'text',
     },
     {
+      name: 'featured',
+      title: 'Featured Category',
+      type: 'boolean',
+    },
+    {
       name: 'imageWithAlt',
       type: 'object',
       title: 'Feature Image',
