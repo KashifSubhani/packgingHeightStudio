@@ -94,6 +94,17 @@ export default {
       ],
     },
     {
+      name: 'products',
+      title: 'Products',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'product'}],
+        },
+      ],
+    },
+    {
       title: 'Faqs',
       name: 'faqs',
       type: 'array',

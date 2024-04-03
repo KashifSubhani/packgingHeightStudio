@@ -86,20 +86,6 @@ export default {
           return true
         }).max(4),
     },
-
-    {
-      name: 'category',
-      title: 'Category',
-      type: 'array',
-      unique: true,
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'category'}],
-        },
-      ],
-    },
-
     {
       title: 'Faqs',
       name: 'faqs',
