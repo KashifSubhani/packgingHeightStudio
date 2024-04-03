@@ -90,8 +90,14 @@ export default {
     {
       name: 'category',
       title: 'Category',
-      type: 'reference',
-      to: [{type: 'category'}],
+      type: 'array',
+      unique: true,
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'category'}],
+        },
+      ],
     },
 
     {
