@@ -1,13 +1,12 @@
 export default {
-  name: 'category',
+  name: 'blogs',
   type: 'document',
-  title: 'Category',
+  title: 'Blogs',
   fields: [
     {
       name: 'name',
       type: 'string',
       title: 'Name',
-      required: true,
     },
     {
       name: 'metaTitle',
@@ -36,19 +35,40 @@ export default {
       },
     },
     {
-      name: 'description',
+      name: 'date',
+      type: 'date',
+      title: 'Date',
+    },
+    {
+      title: 'Category',
+      name: 'blogCatetgory',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Featured', value: 'Featured'},
+          {title: 'Step-By-Step Guides', value: 'Step-By-Step Guides'},
+          {title: 'Retail Packaging', value: 'Retail Packaging'},
+          {title: 'Box Customization', value: 'Box Customization'},
+          {title: 'Packaging Glossary', value: 'Packaging Glossary'},
+          {title: 'Inspiration', value: 'Inspiration'},
+        ],
+      },
+    },
+    {
+      name: 'popular',
+      title: 'Popular',
+      type: 'boolean',
+    },
+    {
+      name: 'username',
+      type: 'string',
+      title: 'Username',
+    },
+    {
       title: 'Description',
-      type: 'text',
-    },
-    {
-      name: 'featured',
-      title: 'Featured Category',
-      type: 'boolean',
-    },
-    {
-      name: 'box_by_material',
-      title: 'Box By Material Item',
-      type: 'boolean',
+      name: 'description',
+      type: 'array',
+      of: [{type: 'block'}],
     },
     {
       name: 'imageWithAlt',
@@ -75,15 +95,15 @@ export default {
       ],
     },
     {
-      name: 'iconWithAlt',
+      name: 'userImage',
       type: 'object',
-      title: 'Feature Icon',
+      title: 'User Image',
       required: true,
       fields: [
         {
-          name: 'icon',
+          name: 'image',
           type: 'image',
-          title: 'Icon',
+          title: 'Image',
           required: true,
           options: {
             hotspot: true,
@@ -95,68 +115,6 @@ export default {
           required: true,
           title: 'Alt',
           description: 'Alternative text for the image',
-        },
-      ],
-    },
-    {
-      name: 'products',
-      title: 'Products',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'product'}],
-        },
-      ],
-    },
-    {
-      title: 'Faqs',
-      name: 'faqs',
-      type: 'array',
-      unique: true,
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'faqs'}],
-        },
-      ],
-    },
-
-    {
-      name: 'content',
-      type: 'object',
-      title: 'Content Section',
-      required: true,
-      fields: [
-        {
-          name: 'contentImage',
-          type: 'object',
-          title: 'Content Image',
-          required: true,
-          fields: [
-            {
-              name: 'image',
-              type: 'image',
-              title: 'Image',
-              required: true,
-              options: {
-                hotspot: true,
-              },
-            },
-            {
-              name: 'alt',
-              type: 'string',
-              required: true,
-              title: 'Alt',
-              description: 'Alternative text for the image',
-            },
-          ],
-        },
-        {
-          title: 'Content Details',
-          name: 'contentDetails',
-          type: 'array',
-          of: [{type: 'block'}],
         },
       ],
     },
