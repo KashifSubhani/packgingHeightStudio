@@ -127,6 +127,20 @@ export default {
               title: 'Alt',
               description: 'Alternative text for the image',
             },
+             {
+          name: 'caption',
+          type: 'string',
+          required: true,
+          title: 'Caption',
+          description: 'Caption for the image',
+        },
+         {
+          name: 'description',
+          type: 'string',
+          required: true,
+          title: 'Description',
+          description: 'Description for the image',
+        },
           ],
         },
         {
