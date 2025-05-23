@@ -97,7 +97,7 @@ export default {
           type: 'string',
           required: true,
           title: 'Caption',
-          description: 'Caption for the image',
+          description: 'Caption for the Image ',
         },
          {
           name: 'description',
